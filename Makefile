@@ -46,12 +46,12 @@ $(NAME):	$(OBJS) mlx_make
 endif
 
 clean:
-			@$(MAKE) -C $(MLX_PATH) clean
+			$(MAKE) -C $(MLX_PATH) clean
 			@$(RM) $(OBJS)
 			@echo ".o deleted"
 
 fclean:		clean
-			@$(MAKE) -C $(MLX_PATH) clean
+			$(MAKE) -C $(MLX_PATH) clean
 			@$(RM) $(NAME)
 			@echo "$(NAME) deleted"
 

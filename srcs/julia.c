@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:03:47 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/12 22:18:15 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/23 21:25:56 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	julia_calculate_pixels(t_pos *pos, t_vars *vars)
 			i = iter_julia(x, y, pos);
 			if (i)
 				img_pxl_put(&vars->img, pos->pos_x, pos->pos_y,
-					encode_rgb(R, G, B));
+					encode_rgb(255 - i * 3, 255 - i * 15,
+						fabs(sin((double)i * 4))));
 			pos->pos_y++;
 			i = 0;
 		}

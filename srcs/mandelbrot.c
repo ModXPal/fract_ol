@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:03:08 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/12 22:06:08 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/23 21:32:36 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	mandelbrot_calculate_pixels(t_pos *pos, t_vars *vars)
 	double	y;
 	double	p;
 
-	i = 0;
 	while (pos->pos_x < WIDTH)
 	{
 		while (pos->pos_y < HEIGHT)
@@ -53,14 +52,15 @@ void	mandelbrot_calculate_pixels(t_pos *pos, t_vars *vars)
 			x = (pos->pos_x - pos->width_adpt) / pos->zoom + pos->x1;
 			y = (pos->pos_y - pos->height_adpt) / pos->zoom + pos->y1;
 			p = sqrt(pow((x - (double)1 / 4), 2) + pow(y, 2));
+			i = 0;
 			if (pow(x + 1, 2) + pow(y, 2) > ((double)1 / 16)
 				&& x > p - (2.8 * pow(p, 2) + (double)1 / 4))
 				i = iter_mandelbrot(x, y, pos);
 			if (i)
 				img_pxl_put(&vars->img, pos->pos_x, pos->pos_y,
-					encode_rgb(R, G, B));
+					encode_rgb(255 - i * 3, 255 - i * 15,
+						fabs(sin((double)i * 4))));
 			pos->pos_y++;
-			i = 0;
 		}
 		pos->pos_y = 0;
 		pos->pos_x++;

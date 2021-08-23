@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:02:22 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/12 21:29:01 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/23 21:22:24 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_digit(char c)
 double	ft_atof(char *nb)
 {
 	double	fnb;
-	int	unit;
+	int		unit;
 
 	unit = 10;
 	fnb = 0;
@@ -45,6 +45,8 @@ int	is_number(char *str)
 	int	dot;
 
 	dot = 0;
+	if (*str == '-')
+		str++;
 	while (is_digit(*str))
 	{
 		if (*(str + 1) == 0)
@@ -70,29 +72,19 @@ int	is_valid_mandelbrot(int ac, char **av)
 
 int	is_valid_julia(int ac, char **av)
 {
-	float	MAX;
-	float	MIN;
-
-	MAX = 4000;
-	MIN = -4000;
 	if (ac != 4)
 		return (0);
 	if (ft_atof(av[1]) != 2)
 		return (0);
-	if (ft_atof(av[2]) > MAX)
+	if (!is_number(av[2]))
 		return (0);
-	if (ft_atof(av[2]) < MIN)
-		return (0);
-	if (ft_atof(av[3]) > MAX)
-		return (0);
-	if (ft_atof(av[3]) < MIN)
+	if (!is_number(av[3]))
 		return (0);
 	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	//printf("%f \n", ft_atof(argv[2]));
 	if (argc < 2)
 	{
 		ft_putstr("missing arguments \n");

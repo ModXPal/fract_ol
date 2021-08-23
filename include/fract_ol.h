@@ -8,9 +8,6 @@
 # include <math.h>
 # define HEIGHT 700 
 # define WIDTH 700 
-# define R 255 - (i * 3)
-# define G 255 - (i * 15)
-# define B 255 * fabs(sin((double)i * 4))
 
 # ifdef __linux__
 #  define ESC 65307
