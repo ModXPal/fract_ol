@@ -87,11 +87,12 @@ void	zoom_out(t_pos *pos);
 void	zoom_from_mouse_position(int x, int y, t_pos *pos);
 void	window_adapt(t_pos *pos);
 void	init_mandelbrot(t_pos *pos);
-void	init_julia(t_pos *pos);
+void	init_julia(t_pos *pos, double c_r, double c_i);
 void	mandelbrot_set(void);
 void	julia_set(double c_r, double c_i);
 void	init_img(t_img *img);
 void	ft_putstr(char *str);
+void	init_zoom(t_pos *pos);
 double	ft_atof(char *nb);
 
 #endif

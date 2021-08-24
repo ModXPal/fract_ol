@@ -95,3 +95,11 @@ int	mouse_pos(int button, int x, int y, void *param)
 	}
 	return (1);
 }
+
+void	init_zoom(t_pos *pos)
+{
+	if (HEIGHT <= WIDTH)
+		pos->zoom = HEIGHT / (pos->x2 - pos->x1);
+	else
+		pos->zoom = HEIGHT / (pos->y2 - pos->y1);
+}

@@ -68,6 +68,13 @@ int	create_julia(t_pos *pos, t_vars *vars)
 	pos->pos_x = 0;
 	pos->pos_y = 0;
 	vars->img.mlx_img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	if (vars->img.mlx_img == NULL)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
+		return (0);
+	}
 	vars->img.addr = mlx_get_data_addr(vars->img.mlx_img,
 			&vars->img.bpp, &vars->img.line_len, &vars->img.endian);
 	julia_calculate_pixels(pos, vars);
@@ -76,7 +83,7 @@ int	create_julia(t_pos *pos, t_vars *vars)
 	return (1);
 }
 
-void	init_julia(t_pos *pos)
+void	init_julia(t_pos *pos, double c_r, double c_i)
 {
 	pos->x1 = -2;
 	pos->x2 = 2;
@@ -87,6 +94,10 @@ void	init_julia(t_pos *pos)
 	pos->iter_multiplier = 1;
 	pos->iter_count = 200;
 	pos->set = 2;
+	pos->c_r = c_r;
+	pos->c_i = c_i;
+	init_zoom(pos);
+	window_adapt(pos);
 }
 
 void	julia_set(double c_r, double c_i)
@@ -98,16 +109,17 @@ void	julia_set(double c_r, double c_i)
 
 	init_img(&img);
 	vars.img = img;
-	init_julia(&pos);
-	pos.c_r = c_r;
-	pos.c_i = c_i;
-	if (HEIGHT <= WIDTH)
-		pos.zoom = HEIGHT / (pos.x2 - pos.x1);
-	else
-		pos.zoom = WIDTH / (pos.y2 - pos.y1);
-	window_adapt(&pos);
+	init_julia(&pos, c_r, c_i);
 	vars.mlx = mlx_init();
+	if (vars.mlx == NULL)
+		return ;
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "test");
+	if (vars.win == NULL)
+	{
+		mlx_destroy_display(vars.mlx);
+		free(vars.mlx);
+		return ;
+	}
 	all.p = &pos;
 	all.v = &vars;
 	get_image(&pos);

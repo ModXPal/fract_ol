@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		ft_putstr("Enter <2> for julia set \n");
 		ft_putstr("For julia set please use the following format : \n");
 		ft_putstr("<2> <nb1> <nb2> \n");
-		ft_putstr("nb1/nb2 must be floating numbers between -4 and 4\n");
+		ft_putstr("floating numbers can be used for nb1/nb2 \n");
 	}
 	return (0);
 }

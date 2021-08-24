@@ -6,9 +6,10 @@ SRCS		=	./srcs/julia.c \
 				./srcs/utils2.c \
 				./srcs/get_julia_args.c \
 				./srcs/check_input.c \
-				./srcs/close_window.c \
 
 SRCS_LINUX	=	./srcs/close_window_linux.c \
+
+SRCS_MAC	=	./srcs/close_window.c \
 
 UNAME		:=	$(shell uname)
 
@@ -19,7 +20,7 @@ CC			=	clang
 CFLAGS		=	-Wall -Wextra -Werror -Iincludes -g
 
 ifeq ($(UNAME), Darwin)
-OBJS		=	$(SRCS:.c=.o)
+	OBJS		=	$(SRCS:.c=.o) $(SRCS_MAC:.c=.o)
 LIB			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 MLX_PATH	=	./mlx/
 else
