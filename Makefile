@@ -1,35 +1,37 @@
-SRCS		=	./srcs/julia.c \
-				./srcs/mandelbrot.c \
-				./srcs/zoom.c \
-				./srcs/utils.c \
-				./srcs/main.c \
-				./srcs/utils2.c \
-				./srcs/get_julia_args.c \
-				./srcs/check_input.c \
+SRCS		=	./srcs/zoom.c \
+			./srcs/utils.c \
+			./srcs/main.c \
+			./srcs/utils2.c \
+			./srcs/get_julia_args.c \
+			./srcs/check_input.c \
 
 SRCS_LINUX	=	./srcs/close_window_linux.c \
+			./srcs/julia_linux.c \
+			./srcs/mandelbrot_linux.c \
 
 SRCS_MAC	=	./srcs/close_window.c \
+			./srcs/julia.c \
+			./srcs/mandelbrot.c \
 
 UNAME		:=	$(shell uname)
 
 NAME		=	fract_ol
 
-CC			=	clang	
+CC		=	clang	
 
 CFLAGS		=	-Wall -Wextra -Werror -Iincludes -g
 
 ifeq ($(UNAME), Darwin)
-	OBJS		=	$(SRCS:.c=.o) $(SRCS_MAC:.c=.o)
-LIB			=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+OBJS		=	$(SRCS:.c=.o) $(SRCS_MAC:.c=.o)
+LIB		=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 MLX_PATH	=	./mlx/
 else
 OBJS		=	$(SRCS:.c=.o) $(SRCS_LINUX:.c=.o)
-LIB			=	-Lmlx_linux -lmlx -Imlx_linux -lX11 -lXext -lm
+LIB		=	-Lmlx_linux -lmlx -Imlx_linux -lX11 -lXext -lm
 MLX_PATH	=	./mlx_linux/
 endif
 
-RM			=	rm -rf
+RM		=	rm -rf
 
 MLX_MAKE	=	@$(MAKE) -C $(MLX_PATH)
 

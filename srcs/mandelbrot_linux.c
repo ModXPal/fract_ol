@@ -75,6 +75,8 @@ int	create_mandelbrot(t_pos *pos, t_vars *vars)
 	if (vars->img.mlx_img == NULL)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_display(vars->mlx);
+		free(vars->mlx);
 		return (0);
 	}
 	vars->img.addr = mlx_get_data_addr(vars->img.mlx_img,
@@ -96,6 +98,9 @@ void	init_mandelbrot(t_pos *pos)
 	pos->iter_multiplier = 1;
 	pos->iter_count = 200;
 	pos->set = 1;
+	init_zoom(pos);
+	window_adapt(pos);
+	get_image(pos);
 }
 
 void	mandelbrot_set(void)
@@ -109,16 +114,17 @@ void	mandelbrot_set(void)
 	vars.img = img;
 	init_mandelbrot(&pos);
 	vars.mlx = mlx_init();
-	init_zoom(pos);
-	window_adapt(pos);
 	if (vars.mlx == NULL)
 		return ;
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Mandelbrot set");
 	if (vars.win == NULL)
+	{
+		mlx_destroy_display(vars.mlx);
+		free(vars.mlx);
 		return ;
+	}
 	all.p = &pos;
 	all.v = &vars;
-	get_image(&pos);
 	create_mandelbrot(&pos, &vars);
 	mlx_mouse_hook(vars.win, mouse_pos, &all);
 	mlx_hook(vars.win, 2, 1L << 0, close_window, &vars);

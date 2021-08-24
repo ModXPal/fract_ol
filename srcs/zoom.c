@@ -101,5 +101,5 @@ void	init_zoom(t_pos *pos)
 	if (HEIGHT <= WIDTH)
 		pos->zoom = HEIGHT / (pos->x2 - pos->x1);
 	else
-		pos->zoom = HEIGHT / (pos->y2 - pos->y1);
+		pos->zoom = WIDTH / (pos->y2 - pos->y1);
 }

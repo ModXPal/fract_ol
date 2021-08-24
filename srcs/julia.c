@@ -71,8 +71,6 @@ int	create_julia(t_pos *pos, t_vars *vars)
 	if (vars->img.mlx_img == NULL)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
 		return (0);
 	}
 	vars->img.addr = mlx_get_data_addr(vars->img.mlx_img,
@@ -115,16 +113,13 @@ void	julia_set(double c_r, double c_i)
 		return ;
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "test");
 	if (vars.win == NULL)
-	{
-		mlx_destroy_display(vars.mlx);
-		free(vars.mlx);
 		return ;
-	}
 	all.p = &pos;
 	all.v = &vars;
 	get_image(&pos);
 	create_julia(&pos, &vars);
 	mlx_mouse_hook(vars.win, mouse_pos, &all);
 	mlx_hook(vars.win, 2, 1L << 0, close_window, &vars);
+	mlx_hook(vars.win, 17, 0L, close_window_red_cross, &vars);
 	mlx_loop(vars.mlx);
 }

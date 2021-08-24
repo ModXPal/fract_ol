@@ -24,3 +24,12 @@ int	close_window(int keycode, t_vars *vars)
 	}
 	return (0);
 }
+
+int	close_window_red_cross(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->img.mlx_img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(1);
+}

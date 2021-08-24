@@ -26,7 +26,7 @@ void	window_adapt(t_pos *pos)
 		pos->width_adpt = (pos->zoom * (pos->x2 - pos->x1) - WIDTH) / 2;
 }
 
-int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
+int	encode_rgb(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }

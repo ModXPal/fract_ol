@@ -14,7 +14,6 @@
 # define FRACT_OL_H
 # include <mlx.h>
 # include <unistd.h>
-# include <stdint.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
@@ -72,7 +71,7 @@ typedef struct s_all {
 int		close_window(int keycode, t_vars *vars);
 int		iter_mandelbrot(double x, double y, t_pos *pos);
 int		iter_julia(double x, double y, t_pos *pos);
-int		encode_rgb(uint8_t red, uint8_t green, uint8_t blue);
+int		encode_rgb(int red, int green, int blue);
 int		create_mandelbrot(t_pos *pos, t_vars *vars);
 int		mouse_pos(int button, int x, int y, void *param);
 int		create_julia(t_pos *pos, t_vars *vars);
@@ -80,6 +79,7 @@ int		is_number(char *str);
 int		is_valid_mandelbrot(int ac, char **av);
 int		is_valid_julia(int ac, char **av);
 int		is_digit(char c);
+int		close_window_red_cross(t_vars *vars);
 void	get_image(t_pos *pos);
 void	img_pxl_put(t_img *img, int x, int y, int color);
 void	zoom_in(t_pos *pos);
