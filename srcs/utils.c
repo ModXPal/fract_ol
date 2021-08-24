@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:05:11 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/12 22:03:38 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/24 11:59:49 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,4 @@ void	img_pxl_put(t_img *img, int x, int y, int color)
 
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(int *)pixel = color;
-}
-
-int	close_window(int keycode, t_vars *vars)
-{
-	if (keycode == ESC)
-	{
-		mlx_destroy_image(vars->mlx, vars->img.mlx_img);
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
-		exit(1);
-	}
-	printf("test \n");
-	return (0);
 }

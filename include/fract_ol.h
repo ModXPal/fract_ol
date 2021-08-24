@@ -61,20 +61,25 @@ int		close_window(int keycode, t_vars *vars);
 int		iter_mandelbrot(double x, double y, t_pos *pos);
 int		iter_julia(double x, double y, t_pos *pos);
 int		encode_rgb(uint8_t red, uint8_t green, uint8_t blue);
+int		create_mandelbrot(t_pos *pos, t_vars *vars);
+int		mouse_pos(int button, int x, int y, void *param);
+int		create_julia(t_pos *pos, t_vars *vars);
+int		is_number(char *str);
+int		is_valid_mandelbrot(int ac, char **av);
+int		is_valid_julia(int ac, char **av);
+int		is_digit(char c);
 void	get_image(t_pos *pos);
 void	img_pxl_put(t_img *img, int x, int y, int color);
-int		create_mandelbrot(t_pos *pos, t_vars *vars);
-int		create_julia(t_pos *pos, t_vars *vars);
 void	zoom_in(t_pos *pos);
 void	zoom_out(t_pos *pos);
 void	zoom_from_mouse_position(int x, int y, t_pos *pos);
 void	window_adapt(t_pos *pos);
-int		mouse_pos(int button, int x, int y, void *param);
 void	init_mandelbrot(t_pos *pos);
 void	init_julia(t_pos *pos);
 void	mandelbrot_set(void);
 void	julia_set(double c_r, double c_i);
 void	init_img(t_img *img);
 void	ft_putstr(char *str);
+double	ft_atof(char *nb);
 
 #endif

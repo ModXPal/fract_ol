@@ -6,82 +6,11 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:02:22 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/23 21:22:24 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/24 11:52:03 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fract_ol.h"
-
-int	is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-double	ft_atof(char *nb)
-{
-	double	fnb;
-	int		unit;
-
-	unit = 10;
-	fnb = 0;
-	while (is_digit(*nb))
-	{
-		if (*nb == '.')
-			break ;
-		fnb = fnb * 10 + *nb++ - 48;
-	}
-	if (*nb)
-		nb++;
-	while (is_digit(*nb))
-	{
-		fnb = fnb + (double)(*nb++ - 48) / unit;
-		unit *= 10;
-	}
-	return (fnb);
-}
-
-int	is_number(char *str)
-{
-	int	dot;
-
-	dot = 0;
-	if (*str == '-')
-		str++;
-	while (is_digit(*str))
-	{
-		if (*(str + 1) == 0)
-			return (1);
-		str++;
-		if (*str == '.' && !dot)
-		{
-			dot = 1;
-			str++;
-		}
-	}
-	return (0);
-}
-
-int	is_valid_mandelbrot(int ac, char **av)
-{
-	if (ac != 2)
-		return (0);
-	if (ft_atof(av[1]) != 1)
-		return (0);
-	return (1);
-}
-
-int	is_valid_julia(int ac, char **av)
-{
-	if (ac != 4)
-		return (0);
-	if (ft_atof(av[1]) != 2)
-		return (0);
-	if (!is_number(av[2]))
-		return (0);
-	if (!is_number(av[3]))
-		return (0);
-	return (1);
-}
 
 int	main(int argc, char **argv)
 {
