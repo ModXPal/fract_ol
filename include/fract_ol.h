@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:45 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/24 12:05:51 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/24 18:08:47 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 
 # ifdef __linux__
 #  define ESC 65307
+#  define UINT8_T int
 # else
 #  define ESC 53
+#  define UINT8_T unsigned char 
 # endif
 
 typedef struct s_img {
@@ -71,7 +73,7 @@ typedef struct s_all {
 int		close_window(int keycode, t_vars *vars);
 int		iter_mandelbrot(double x, double y, t_pos *pos);
 int		iter_julia(double x, double y, t_pos *pos);
-int		encode_rgb(int red, int green, int blue);
+int		encode_rgb(UINT8_T red, UINT8_T green, UINT8_T blue);
 int		create_mandelbrot(t_pos *pos, t_vars *vars);
 int		mouse_pos(int button, int x, int y, void *param);
 int		create_julia(t_pos *pos, t_vars *vars);

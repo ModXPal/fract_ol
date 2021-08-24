@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 14:03:08 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/23 21:32:36 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/24 18:03:28 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void	init_mandelbrot(t_pos *pos)
 	pos->iter_multiplier = 1;
 	pos->iter_count = 200;
 	pos->set = 1;
+	init_zoom(pos);
+	window_adapt(pos);
+	get_image(pos);
 }
 
 void	mandelbrot_set(void)
@@ -109,8 +112,6 @@ void	mandelbrot_set(void)
 	vars.img = img;
 	init_mandelbrot(&pos);
 	vars.mlx = mlx_init();
-	init_zoom(pos);
-	window_adapt(pos);
 	if (vars.mlx == NULL)
 		return ;
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Mandelbrot set");
@@ -118,7 +119,6 @@ void	mandelbrot_set(void)
 		return ;
 	all.p = &pos;
 	all.v = &vars;
-	get_image(&pos);
 	create_mandelbrot(&pos, &vars);
 	mlx_mouse_hook(vars.win, mouse_pos, &all);
 	mlx_hook(vars.win, 2, 1L << 0, close_window, &vars);

@@ -6,7 +6,7 @@
 /*   By: rcollas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 15:05:11 by rcollas           #+#    #+#             */
-/*   Updated: 2021/08/24 11:59:49 by rcollas          ###   ########.fr       */
+/*   Updated: 2021/08/24 18:07:01 by rcollas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	window_adapt(t_pos *pos)
 		pos->width_adpt = (pos->zoom * (pos->x2 - pos->x1) - WIDTH) / 2;
 }
 
-int	encode_rgb(int red, int green, int blue)
+int	encode_rgb(UINT8_T red, UINT8_T green, UINT8_T blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
