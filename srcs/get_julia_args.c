@@ -21,9 +21,16 @@ double	ft_atof(char *nb)
 {
 	double	fnb;
 	int		unit;
+	int		sign;
 
 	unit = 10;
 	fnb = 0;
+	sign = 1;
+	if (*nb == '-')
+	{
+		sign = -1;
+		nb++;
+	}
 	while (is_digit(*nb))
 	{
 		if (*nb == '.')
@@ -37,5 +44,5 @@ double	ft_atof(char *nb)
 		fnb = fnb + (double)(*nb++ - 48) / unit;
 		unit *= 10;
 	}
-	return (fnb);
+	return (fnb * sign);
 }

@@ -24,10 +24,10 @@ void	zoom_in(t_pos *pos)
 	printf("iter_count = %d \n", pos->iter_count);
 	x_zoom = pos->delta_x - pos->delta_x * 0.90;
 	y_zoom = pos->delta_y - pos->delta_y * 0.90;
-	pos->x1 = pos->x1 + x_zoom * pos->mouse_x1;
-	pos->x2 = pos->x2 - x_zoom * pos->mouse_x2;
-	pos->y1 = pos->y1 + y_zoom * pos->mouse_y1;
-	pos->y2 = pos->y2 - y_zoom * pos->mouse_y2;
+	pos->x1 = pos->x1 - x_zoom * pos->mouse_x1;
+	pos->x2 = pos->x2 + x_zoom * pos->mouse_x2;
+	pos->y1 = pos->y1 - y_zoom * pos->mouse_y1;
+	pos->y2 = pos->y2 + y_zoom * pos->mouse_y2;
 	if (HEIGHT <= WIDTH)
 		pos->zoom = HEIGHT / (pos->x2 - pos->x1);
 	else
@@ -47,10 +47,10 @@ void	zoom_out(t_pos *pos)
 	printf("iter_count = %d \n", pos->iter_count);
 	x_zoom = pos->delta_x - pos->delta_x * 0.95;
 	y_zoom = pos->delta_y - pos->delta_y * 0.95;
-	pos->x1 = pos->x1 - x_zoom * pos->mouse_x2;
-	pos->x2 = pos->x2 + x_zoom * pos->mouse_x1;
-	pos->y1 = pos->y1 - y_zoom * pos->mouse_y2;
-	pos->y2 = pos->y2 + y_zoom * pos->mouse_y1;
+	pos->x1 = pos->x1 + x_zoom * pos->mouse_x2;
+	pos->x2 = pos->x2 - x_zoom * pos->mouse_x1;
+	pos->y1 = pos->y1 + y_zoom * pos->mouse_y2;
+	pos->y2 = pos->y2 - y_zoom * pos->mouse_y1;
 	if (HEIGHT <= WIDTH)
 		pos->zoom = HEIGHT / (pos->delta_x);
 	else
@@ -63,8 +63,8 @@ void	zoom_from_mouse_position(int x, int y, t_pos *pos)
 	pos->delta_y = pos->y2 - pos->y1;
 	pos->mouse_x1 = (double)x / WIDTH;
 	pos->mouse_x2 = fabs(((double)x - WIDTH) / WIDTH);
-	pos->mouse_y1 = (double)y / HEIGHT;
-	pos->mouse_y2 = fabs(((double)y - HEIGHT) / HEIGHT);
+	pos->mouse_y2 = (double)y / HEIGHT;
+	pos->mouse_y1 = fabs(((double)y - HEIGHT) / HEIGHT);
 }
 
 int	mouse_pos(int button, int x, int y, void *param)

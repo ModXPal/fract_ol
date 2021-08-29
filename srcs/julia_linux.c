@@ -52,7 +52,7 @@ void	julia_calculate_pixels(t_pos *pos, t_vars *vars)
 			y = (pos->pos_y - pos->height_adpt) / pos->zoom + pos->y1;
 			i = iter_julia(x, y, pos);
 			if (i)
-				img_pxl_put(&vars->img, pos->pos_x, pos->pos_y,
+				img_pxl_put(&vars->img, WIDTH - pos->pos_x, pos->pos_y,
 					encode_rgb(255 - i * 3, 255 - i * 15,
 						fabs(sin((double)i * 4))));
 			pos->pos_y++;
